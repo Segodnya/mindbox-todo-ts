@@ -1,5 +1,5 @@
 import React from 'react';
-import { ListGroup } from 'react-bootstrap';
+import { ListGroup, Form, Row, Col } from 'react-bootstrap';
 
 interface Todo {
   id: number;
@@ -14,8 +14,13 @@ interface TodoItemProps {
 
 const TodoItem: React.FC<TodoItemProps> = ({ todo, handleToggleTodo }) => {
   return (
-    <ListGroup.Item style={{ textDecoration: todo.completed ? 'line-through' : 'none' }} onClick={() => handleToggleTodo(todo.id)}>
-      {todo.text}
+    <ListGroup.Item style={{ textDecoration: todo.completed ? 'line-through' : 'none' }}>
+      <Row>
+        <Col xs="auto">
+          <Form.Check type="checkbox" checked={todo.completed} onChange={() => handleToggleTodo(todo.id)} />
+        </Col>
+        <Col>{todo.text}</Col>
+      </Row>
     </ListGroup.Item>
   );
 };

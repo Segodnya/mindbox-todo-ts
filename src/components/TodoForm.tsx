@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Form } from 'react-bootstrap';
+import { Button, Form, Row, Col } from 'react-bootstrap';
 
 interface TodoFormProps {
   newTodo: string;
@@ -10,12 +10,18 @@ interface TodoFormProps {
 const TodoForm: React.FC<TodoFormProps> = ({ newTodo, setNewTodo, handleAddTodo }) => {
   return (
     <Form>
-      <Form.Group>
-        <Form.Control type="text" placeholder="Enter new todo" value={newTodo} onChange={(e) => setNewTodo(e.target.value)} />
-      </Form.Group>
-      <Button variant="primary" onClick={handleAddTodo}>
-        Add Todo
-      </Button>
+      <Row>
+        <Col>
+          <Form.Group>
+            <Form.Control type="text" placeholder="Enter new todo" value={newTodo} onChange={(e) => setNewTodo(e.target.value)} />
+          </Form.Group>
+        </Col>
+        <Col xs="auto">
+          <Button variant="primary" onClick={handleAddTodo}>
+            Add Todo
+          </Button>
+        </Col>
+      </Row>
     </Form>
   );
 };
