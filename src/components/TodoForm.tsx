@@ -8,16 +8,18 @@ interface TodoFormProps {
 }
 
 const TodoForm: React.FC<TodoFormProps> = ({ newTodo, setNewTodo, handleAddTodo }) => {
+  const isDisabled = newTodo.trim() === '';
+
   return (
     <Form>
       <Row>
         <Col>
           <Form.Group>
-            <Form.Control type="text" placeholder="Enter new todo" value={newTodo} onChange={(e) => setNewTodo(e.target.value)} />
+            <Form.Control type="text" placeholder="What needs to be done?" value={newTodo} onChange={(e) => setNewTodo(e.target.value)} style={{ lineHeight: '24px', fontSize: '12px' }} />
           </Form.Group>
         </Col>
         <Col xs="auto">
-          <Button variant="primary" onClick={handleAddTodo}>
+          <Button variant="primary" disabled={isDisabled} onClick={handleAddTodo}>
             Add Todo
           </Button>
         </Col>

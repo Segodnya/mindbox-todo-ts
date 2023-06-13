@@ -12,11 +12,11 @@ const TodoFilter: React.FC<Props> = ({ value, onChange }) => {
       <ToggleButton variant="outline-primary" value="all" id="all">
         All
       </ToggleButton>
+      <ToggleButton variant="outline-primary" value="uncompleted" id="uncompleted">
+        Active
+      </ToggleButton>
       <ToggleButton variant="outline-primary" value="completed" id="completed">
         Completed
-      </ToggleButton>
-      <ToggleButton variant="outline-primary" value="uncompleted" id="uncompleted">
-        Uncompleted
       </ToggleButton>
     </ToggleButtonGroup>
   );

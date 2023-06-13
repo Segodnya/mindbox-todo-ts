@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { ListGroup } from 'react-bootstrap';
+import { ListGroup, Button } from 'react-bootstrap';
 import TodoItem from './TodoItem';
 import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
@@ -31,9 +31,15 @@ const TodoList: React.FC = () => {
     setTodos(updatedTodos);
   };
 
+  const handleClearCompleted = () => {
+    const updatedTodos = todos.filter((todo) => !todo.completed);
+    setTodos(updatedTodos);
+  };
+
   const completedTodos = todos.filter((todo) => todo.completed);
   const uncompletedTodos = todos.filter((todo) => !todo.completed);
   const filteredTodos = filter === 'completed' ? completedTodos : filter === 'uncompleted' ? uncompletedTodos : todos;
+  const hasCompletedTasks = todos.some((todo) => todo.completed);
 
   return (
     <div>
@@ -42,14 +48,17 @@ const TodoList: React.FC = () => {
       <hr />
       <TodoFilter value={filter} onChange={(value) => setFilter(value)} />
       <hr />
-      <h2>{filter === 'completed' ? 'Completed' : filter === 'uncompleted' ? 'Uncompleted' : 'All'} Todos</h2>
+      <h2>{filter === 'completed' ? 'Completed' : filter === 'uncompleted' ? 'Active' : 'All'} Todos</h2>
       <ListGroup>
         {filteredTodos.map((todo) => (
           <TodoItem key={todo.id} todo={todo} handleToggleTodo={handleToggleTodo} />
         ))}
       </ListGroup>
       <hr />
-      <p>Number of uncompleted tasks: {uncompletedTodos.length}</p>
+      <p>{uncompletedTodos.length} items left</p>
+      <Button variant="outline-danger" disabled={!hasCompletedTasks} onClick={() => handleClearCompleted()}>
+        Clear completed
+      </Button>
     </div>
   );
 };
