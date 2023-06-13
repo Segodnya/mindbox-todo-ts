@@ -8,7 +8,7 @@ interface Props {
 
 const TodoFilter: React.FC<Props> = ({ value, onChange }) => {
   return (
-    <ToggleButtonGroup type="radio" name="options" value={value} onChange={(value) => onChange(value)}>
+    <ToggleButtonGroup type="radio" name="options" value={value} onChange={onChange}>
       <ToggleButton variant="outline-primary" value="all" id="all">
         All
       </ToggleButton>

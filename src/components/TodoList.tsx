@@ -3,14 +3,11 @@ import { ListGroup, Button } from 'react-bootstrap';
 import TodoItem from './TodoItem';
 import TodoForm from './TodoForm';
 import TodoFilter from './TodoFilter';
+import { Todo } from '../types';
 
-interface Todo {
-  id: number;
-  text: string;
-  completed: boolean;
-}
+interface TodoListProps {}
 
-const TodoList: React.FC = () => {
+const TodoList: React.FC<TodoListProps> = () => {
   const [todos, setTodos] = useState<Todo[]>([]);
   const [newTodo, setNewTodo] = useState<string>('');
   const [filter, setFilter] = useState<string>('all');
@@ -46,7 +43,7 @@ const TodoList: React.FC = () => {
       <h1>Todo List</h1>
       <TodoForm newTodo={newTodo} setNewTodo={setNewTodo} handleAddTodo={handleAddTodo} />
       <hr />
-      <TodoFilter value={filter} onChange={(value) => setFilter(value)} />
+      <TodoFilter value={filter} onChange={setFilter} />
       <hr />
       <h2>{filter === 'completed' ? 'Completed' : filter === 'uncompleted' ? 'Active' : 'All'} Todos</h2>
       <ListGroup>
@@ -56,7 +53,7 @@ const TodoList: React.FC = () => {
       </ListGroup>
       <hr />
       <p>{uncompletedTodos.length} items left</p>
-      <Button variant="outline-danger" disabled={!hasCompletedTasks} onClick={() => handleClearCompleted()}>
+      <Button variant="outline-danger" disabled={!hasCompletedTasks} onClick={handleClearCompleted}>
         Clear completed
       </Button>
     </div>

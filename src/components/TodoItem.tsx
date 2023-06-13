@@ -1,11 +1,6 @@
 import React from 'react';
 import { ListGroup, Form, Row, Col } from 'react-bootstrap';
-
-interface Todo {
-  id: number;
-  text: string;
-  completed: boolean;
-}
+import { Todo } from '../types';
 
 interface TodoItemProps {
   todo: Todo;
@@ -25,4 +20,4 @@ const TodoItem: React.FC<TodoItemProps> = ({ todo, handleToggleTodo }) => {
   );
 };
 
-export default TodoItem;
+export default React.memo(TodoItem);
